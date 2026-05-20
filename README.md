@@ -10,10 +10,11 @@ This repository contains the full codebase for a hybrid machine learning–econo
 While applied here to crypto-derivative markets, the framework is generalizable to financial and macroeconomic time-series datasets.
 
 The framework integrates:
-- **On-chain metrics:** NUPL (Net Unrealized Profit/Loss), SOPR (Spent Output Profit Ratio)
-- **Signal processing:** Continuous Wavelet Transforms (CWT) for multi-scale regime detection
-- **Macro-financial controls:** CPI, policy rate momentum, and DXY
-- **Nonlinear modeling:** XGBoost benchmarked against an AR(1)–GARCH(1,1) baseline
+• Social Sentiment Signals: High-frequency narrative tracking, cross-community virality, and organic engagement velocity extracted from public Reddit forums (via PRAW).
+• On-chain metrics: NUPL (Net Unrealized Profit/Loss), SOPR (Spent Output Profit Ratio)
+• Signal processing: Continuous Wavelet Transforms (CWT) for multi-scale regime detection
+• Macro-financial controls: CPI, policy rate momentum, and DXY
+• Nonlinear modeling: XGBoost benchmarked against an AR(1)–GARCH(1,1) baseline
 
 The primary objective is to study the distinction between **statistical predictability** and **economic tradability** in financial markets.
 
@@ -86,6 +87,13 @@ sentiment, and macroeconomic sources. The core columns expected by the pipeline 
 All additional features (e.g., realized volatility measures, wavelet coefficients,
 technical indicators, and interaction terms) are generated internally by the modeling
 pipeline and documented directly in `main.py`.
+
+## 🔒 Reddit API Compliance & Data Minimization Protocol
+
+In alignment with Reddit’s Responsible Builder Policy, the data collection component adheres to strict ethical and data minimization standards:
+1. Non-Commercial Academic Use: This architecture is built strictly for behavioral econometrics research and academic replication. It is entirely disconnected from any commercial trading execution or monetized SaaS platforms.
+2. Complete Anonymization: The pipeline completely ignores user profiles, metadata, and identifiers. It extracts only raw ticker mentions, keyword counts, and aggregate engagement metrics (upvote/comment ratios) at the subreddit level. All personal data is discarded at the ingestion layer.
+3. No LLM Training: Text collected is processed locally using lightweight, traditional NLP (regex and entity classification). No data is stored long-term, distributed to third parties, or used to train or fine-tune Large Language Models.
 
 ---
 **Relevance to Financial Data Analysis**
